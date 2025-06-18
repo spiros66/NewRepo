@@ -1,0 +1,76 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:deepSeekSearchBox="clr-namespace:Sillogos.CustomControls.DeepSeek_SearchBox">
+    <!-- Replace with your namespace -->
+
+    <!-- Style for ClearableTextBox -->
+    <Style TargetType="{x:Type deepSeekSearchBox:ClearableTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type deepSeekSearchBox:ClearableTextBox}">
+                    <Grid>
+                        <!-- TextBox -->
+                        <TextBox x:Name="PART_TextBox"
+                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0"
+                                 Padding="5" />
+
+                        <!-- Clear Button -->
+                        <Button x:Name="PART_ClearButton"
+                                Content="X"
+                                Command="{TemplateBinding ClearCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0,0,5,0"
+                                Padding="5,0"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Foreground="Gray"
+                                FontWeight="Bold"
+                                Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <!-- Show the button when Text is not empty -->
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Popup for Suggestions -->
+                        <Popup x:Name="PART_SuggestionsPopup"
+                               Placement="Bottom"
+                               PlacementTarget="{Binding ElementName=PART_TextBox}"
+                               IsOpen="{Binding Suggestions, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsEmptyToBoolConverter}, ConverterParameter='Inverse'}"
+                               StaysOpen="False">
+                            <Border Background="White"
+                                    BorderBrush="LightGray"
+                                    BorderThickness="1"
+                                    Padding="5">
+                                <ListBox x:Name="PART_SuggestionsListBox"
+                                         ItemsSource="{TemplateBinding Suggestions}"
+                                         SelectedItem="{TemplateBinding SelectedItem}"
+                                         MaxHeight="150"
+                                         Width="{Binding ActualWidth, ElementName=PART_TextBox}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentPresenter Content="{Binding}" ContentTemplate="{TemplateBinding ItemTemplate}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

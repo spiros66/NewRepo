@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Sillogos.Views.ContactCategoriesSearch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Sillogos.ViewModels"
+             mc:Ignorable="d" 
+			 d:DataContext="{d:DesignInstance Type=viewModels:ContactCategoriesSearchViewModel}"
+             d:DesignHeight="800" d:DesignWidth="800" >
+	<Grid>
+		<Expander IsExpanded="False" BorderBrush="Gainsboro" BorderThickness="1" Background="#FAFAFAFA" 
+                  Header="Σύνθετη αναζήτηση">
+			<Grid ShowGridLines="False" UseLayoutRounding="False">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+        <!--ContactCategoryId-->
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Κωδικός:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ContactCategoryIdTextBox" Validation.ErrorTemplate="{x:Null}"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding ContactCategoryId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
+
+        <!--ContactCategoryName-->
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Πόλη:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ContactCategoryNameTextBox"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding ContactCategoryName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+        <!--RemDate-->
+        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Ενημέρωση:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+        <DatePicker x:Name="RemDateFromDatePicker" Grid.Row="2" Grid.Column="1"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Validation.ErrorTemplate="{DynamicResource ValidationTemplate}"
+                            SelectedDate="{Binding RemDateFrom, StringFormat=MM/dd/yyyy, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" />
+        <TextBlock Text="-" Grid.Row="2" Grid.Column="2"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+        <DatePicker x:Name="RemDateToDatePicker" Grid.Row="2" Grid.Column="3"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Validation.ErrorTemplate="{DynamicResource ValidationTemplate}"
+                            SelectedDate="{Binding RemDateTo, StringFormat=MM/dd/yyyy, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" />
+
+        <!--RemUser-->
+        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Χρήστης:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+        <TextBox x:Name="RemUserTextBox" Grid.Row="3" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding RemUser,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+        <!--COMMANDS-->
+        <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"
+                            Orientation="Horizontal" Margin="0,5,0,5">
+            <Button Content="Αναζήτηση" Margin="5,0,0,0" Width="80" 
+                            Command="{Binding SearchCommand}" IsDefault="True" />
+            <Button Content="Καθαρισμός" Margin="5,0,0,0" Width="80"
+                            Command="{Binding ClearSearchCommand}" IsCancel="True" />
+        </StackPanel>
+
+            </Grid>
+        </Expander>
+    </Grid>
+</UserControl>

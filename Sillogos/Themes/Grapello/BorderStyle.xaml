@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--PAGE HEADER BORDER-->
+    <Style x:Key="PageHeaderBorder" TargetType="{x:Type Border}">
+        <!--<Setter Property="Background" Value="{StaticResource Border.PageHeader.Background}"/>-->
+        <Setter Property="Background" Value="{DynamicResource Border.PageHeader.Background}" />
+    </Style>
+
+    <!--CORE BORDER STYLE-->
+    <Style x:Key="CoreBorderStyle" TargetType="{x:Type Border}">
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource ThemeColorBrush}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>-->
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeColorBrush}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <!--<Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Red"
+                                  Direction="270"
+                                  BlurRadius="10"
+                                  ShadowDepth="3" />
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+
+    <!--DETAILS BORDER-->
+    <Style x:Key="DetailsBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="7" />
+        <Setter Property="Padding" Value="4" />
+    </Style>
+
+</ResourceDictionary>
+    

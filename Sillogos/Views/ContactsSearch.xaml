@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="Sillogos.Views.ContactsSearch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Sillogos.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModels:ContactsSearchViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Expander IsExpanded="False" BorderBrush="Gainsboro" BorderThickness="1" Background="#FAFAFAFA"
+                  Header="Σύνθετη αναζήτηση">
+			<Grid ShowGridLines="False" UseLayoutRounding="False">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+				
+                <!--ContactId-->
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Κωδικός:"
+                           Style="{DynamicResource GridTextBlockStyle}"/>
+                <TextBox x:Name="ContactIdTextBox" Grid.Row="0" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.ContactId,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Title-->
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Προσφώνηση:"
+                           Style="{DynamicResource GridTextBlockStyle}"/>
+                <TextBox x:Name="TitleTextBox" Grid.Row="1" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Title,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--LastName-->
+                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Επώνυμο:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="LastNameTextBox" Grid.Row="2" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.LastName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--FirstName-->
+                <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Όνομα:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="FirstNameTextBox" Grid.Row="3" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.FirstName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Address-->
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Διεύθυνση:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="AddressTextBox" Grid.Row="4" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Address,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Region-->
+                <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Περιοχή:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="RegionTextBox" Grid.Row="5" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Region,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Postal-->
+                <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Ταχ.Κώδικας:"
+                           Style="{DynamicResource GridTextBlockStyle}"></TextBlock>
+                <TextBox x:Name="PostalTextBox" Grid.Row="6" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Postal,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--CityId-->
+                <Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="Πόλη:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="CityIdTextBox" Grid.Row="7" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.CityId,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Country-->
+                <Border Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="Χώρα:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="CountryTextBox" Grid.Row="8" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Country,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Phone-->
+                <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="9" Grid.Column="0" Text="Τηλέφωνο:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="PhoneTextBox" Grid.Row="9" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Phone,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Mobile-->
+                <Border Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="10" Grid.Column="0" Text="Κινητό:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="MobileTextBox" Grid.Row="10" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Mobile,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--Email-->
+                <Border Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="11" Grid.Column="0" Text="Email:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="EmailTextBox" Grid.Row="11" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.Email,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--DistributionNr-->
+                <Border Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="12" Grid.Column="0" Text="DistributionNr:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="DistributionNrTextBox" Grid.Row="12" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.DistributionNr,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--ContactCategoryId-->
+                <Border Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="13" Grid.Column="0" Text="ContactCategoryId:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <TextBox x:Name="ContactCategoryIdTextBox" Grid.Row="13" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.ContactCategoryId,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--RemDate-->
+                <Border Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="14" Grid.Column="0" Text="Ενημέρωση:"
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <DatePicker Grid.Row="14" Grid.Column="1" x:Name="RemDateFromDatePicker"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Validation.ErrorTemplate="{x:Null}"
+                            Text="{Binding Contact.RemDate, StringFormat=MM/dd/yyyy, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" />
+                <TextBlock Grid.Row="14" Grid.Column="2" Text="-" 
+                           Style="{DynamicResource GridTextBlockStyle}" />
+                <DatePicker x:Name="RemDateToDatePicker" Grid.Row="14" Grid.Column="3"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Validation.ErrorTemplate="{DynamicResource ValidationTemplate}"
+                            Text="{Binding Contact.RemDate, StringFormat=MM/dd/yyyy, Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" 
+                            IsEnabled="True"/>
+
+                <!--RemUser-->
+                <Border Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="5" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <TextBlock Grid.Row="15" Grid.Column="0" Text="Χρήστης:" 
+                           Style="{DynamicResource GridTextBlockStyle}"/>
+                <TextBox x:Name="RemUserTextBox" Grid.Row="15" Grid.Column="1" Style="{DynamicResource GridTextBoxStyle}"
+                         Text="{Binding Contact.RemUser,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}" />
+
+                <!--COMMANDS-->
+                <StackPanel Grid.Row="16" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right"
+                            Orientation="Horizontal" Margin="0,5,0,0">
+                    <Button Content="Αναζήτηση" Margin="5,0,0,0" Width="80" 
+                            Command="{Binding SearchCommand}" IsDefault="True" />
+                    <Button Content="Καθαρισμός" Margin="5,0,0,0" Width="80"
+                            Command="{Binding ClearSearchCommand}" IsCancel="True" />
+                </StackPanel>
+            </Grid>
+		</Expander>
+	</Grid>
+</UserControl>

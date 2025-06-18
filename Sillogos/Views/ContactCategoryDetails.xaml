@@ -1,0 +1,187 @@
+﻿<Window x:Class="Sillogos.Views.ContactCategoryDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Sillogos.ViewModels"
+             xmlns:helpers="clr-namespace:Sillogos.Helpers"
+             xmlns:converters="clr-namespace:Sillogos.Converters"
+             mc:Ignorable="d" 
+			 d:DataContext="{d:DesignInstance Type=viewModels:ContactCategoryDetailsViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type ValidationError}">
+                <TextBlock FontStyle="Italic" Foreground="Red" HorizontalAlignment="Right" Margin="0,1" Text="{Binding Path=ErrorContent}" />
+            </DataTemplate>
+
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--HEADER-->
+        <Grid Grid.Row="0" Background="#FF595B87">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label x:Name="WindowHeader" Grid.Row="0"
+                   Content="{Binding WindowHeader}"
+                   Style="{DynamicResource WindowHeaderLabel}" />
+            <Label x:Name="RecordHeader" Grid.Row="1"
+                   Content="{Binding RecordHeader}"
+                   Style="{DynamicResource RecordHeaderLabel}" />
+        </Grid>
+
+        <!--DATA GRID-->
+        <Border Grid.Row="1" BorderThickness="1"
+                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                Padding="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--ContactCategoryId-->
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <Label Grid.Row="0" Grid.Column="0" Content="Κωδικός:"
+                       Style="{DynamicResource GridLabelStyle}" />
+                <TextBox x:Name="TitleIdTextBox" Grid.Row="0" Grid.Column="1"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         IsReadOnly="{Binding IsReadOnly}"
+                         Text="{Binding Path=ContactCategory.ContactCategoryId}" />
+
+                <!--ContactCategoryName (required)-->
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Κατηγορία επαφής:"
+                       Style="{DynamicResource GridLabelStyle}" />
+                <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" MaxLength="10"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         IsReadOnly="{Binding IsReadOnly}">
+                    <TextBox.Text>
+                        <Binding Path="ContactCategory.ContactCategoryName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
+                                 ValidatesOnNotifyDataErrors="True">
+                            <Binding.ValidationRules>
+                                <helpers:RequiredFieldValidator ErrorMessage="Missing Name!!!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!--RemDate-->
+                <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Ενημέρωση:"
+                       Style="{DynamicResource GridLabelStyle}" />
+                <DatePicker Grid.Row="2" Grid.Column="1" x:Name="RemDateDatePicker"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                            IsHitTestVisible="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="ContactCategory.RemDate" StringFormat="dd/MM/d/yyyy" Mode="TwoWay"
+                                 UpdateSourceTrigger="PropertyChanged" 
+                                 ValidatesOnNotifyDataErrors="True">
+                            <Binding.ValidationRules>
+                                <helpers:RequiredFieldValidator ErrorMessage="Missing Rem Date!!!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+
+                <!--RemUser-->
+                <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0,0,0,1"
+                        BorderBrush="#FFDDDDDD" />
+                <Label Grid.Row="3" Grid.Column="0" Content="Χρήστης:"
+                       Style="{DynamicResource GridLabelStyle}" />
+                <TextBox x:Name="RemUserTextBox" Grid.Row="3" Grid.Column="1" MaxLength="50"
+                         Style="{DynamicResource GridTextBoxStyle}"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         IsReadOnly="{Binding IsReadOnly}"
+                         Text="{Binding ContactCategory.RemUser}" />
+
+            </Grid>
+        </Border>
+
+        <!--COMMANDS-->
+        <Border Grid.Row="2" Background="#FFF1F1F1" Height="48">
+            <StackPanel Margin="0,7" Orientation="Horizontal" 
+                        Height="36"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" >
+                <!--SAVE BUTTON-->
+                <Button x:Name="SaveButton" Margin="3,0,3,0" MinWidth="75" MinHeight="23"
+                        Style="{DynamicResource App-Bar-Buttons}"
+                        Command="{Binding SaveCommand}" 
+                        Visibility="{Binding IsSaveVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/baseline_save_black_24dp.png"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Style="{StaticResource DisabledImage}" />
+                        <Label Content="ΑΠΟΘΗΚΕΥΣΗ" FontSize="14" VerticalContentAlignment="Center"
+                               HorizontalAlignment="Left" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Button>
+
+                <!--EDIT BUTTON-->
+                <Button x:Name="EditButton" Margin="3,0,3,0" MinWidth="75" MinHeight="23"
+                        Style="{DynamicResource App-Bar-Buttons}"
+                        Command="{Binding EditCommand}"
+                        Visibility="{Binding IsEditDeleteVisible, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/baseline_edit_black_24dp.png"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Content="ΕΠΕΞΕΡΓΑΣΙΑ" FontSize="14" VerticalContentAlignment="Center"
+                               HorizontalAlignment="Left" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Button>
+
+                <!--DELETE BUTTON-->
+                <Button x:Name="DeleteButton" Margin="3,0,3,0" MinWidth="75" MinHeight="23"
+                        Style="{DynamicResource App-Bar-Buttons}"
+                        Command="{Binding DeleteCommand}"
+                        Visibility="{Binding IsEditDeleteVisible, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/baseline_delete_black_24dp.png"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Content="ΔΙΑΓΡΑΦΗ" FontSize="14" VerticalContentAlignment="Center"
+                               HorizontalAlignment="Left" FontWeight="SemiBold" Foreground="#FF333333" />
+                    </StackPanel>
+                </Button>
+
+                <!--GO BACK BUTTON-->
+                <Button x:Name="GoBackButton" Margin="3,0,3,0" MinWidth="75" MinHeight="23"
+                        Style="{DynamicResource App-Bar-Buttons}"
+                        IsCancel="True"
+                        Command="{Binding GoBackCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/baseline_undo_black_24.png"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Content="ΕΠΙΣΤΡΟΦΗ" FontSize="14" VerticalContentAlignment="Center"
+                               HorizontalAlignment="Left" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Window>

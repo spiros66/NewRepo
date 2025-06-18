@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- √ CONTENT BORDER STYLE -->
+    <Style x:Key="ContentBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource WhiteColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource PageBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="5,3" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10"
+                                  Opacity="0.25"
+                                  ShadowDepth="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- CORE BORDER STYLE -->
+    <Style x:Key="CoreBorderStyle" TargetType="{x:Type Border}">
+        <!--<Setter Property="BorderBrush" Value="{DynamicResource ThemeColorBrush}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>-->
+        <Setter Property="BorderBrush" Value="{DynamicResource ThemeColorBrush}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <!--<Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Red"
+                                  Direction="270"
+                                  BlurRadius="10"
+                                  ShadowDepth="3" />
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+
+    <!-- √ PAGE HEADER BORDER -->
+    <Style x:Key="PageHeaderBorder" TargetType="{x:Type Border}">
+        <!--<Setter Property="Background" Value="{StaticResource Border.WindowHeader.Background}"/>-->
+        <Setter Property="Background" Value="{DynamicResource Border.WindowHeader.Background}" />
+    </Style>
+
+    <Style x:Key="DetailsBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="7" />
+        <Setter Property="Padding" Value="4" />
+    </Style>
+
+</ResourceDictionary>

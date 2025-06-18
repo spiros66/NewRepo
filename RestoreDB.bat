@@ -1,0 +1,1 @@
+sqlcmd -S .\SQLExpress -i "RestoreDB.sql"
